@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="632.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="inventorysoftwarei.IMSPartsAddScreenController">
+<AnchorPane id="AnchorPane" prefHeight="632.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventorysoftwarei.IMSPartsAddScreenController">
    <children>
       <Text layoutX="50.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Part">
          <font>
@@ -15,6 +16,21 @@
       </Text>
       <RadioButton layoutX="176.0" layoutY="40.0" mnemonicParsing="false" text="In-House" />
       <RadioButton layoutX="331.0" layoutY="40.0" mnemonicParsing="false" text="Outsourced" />
-      <Text layoutX="111.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="111.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+      <TextField disable="true" editable="false" layoutX="226.0" layoutY="95.0" />
+      <TextField layoutX="226.0" layoutY="143.0" />
+      <TextField layoutX="226.0" layoutY="184.0" />
+      <TextField layoutX="226.0" layoutY="231.0" />
+      <Text layoutX="111.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="111.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="111.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="111.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="111.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="289.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextField layoutX="162.0" layoutY="260.0" prefHeight="25.0" prefWidth="83.0" />
+      <TextField layoutX="331.0" layoutY="260.0" prefHeight="25.0" prefWidth="83.0" />
+      <TextField layoutX="169.0" layoutY="296.0" prefHeight="25.0" prefWidth="114.0" />
+      <Button layoutX="285.0" layoutY="346.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="375.0" layoutY="346.0" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>
