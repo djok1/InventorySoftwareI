@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="632.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="inventorysoftwarei.IMSPartsAddScreenController">
+<AnchorPane id="AnchorPane" prefHeight="347.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventorysoftwarei.IMSPartsAddScreenController">
    <children>
-      <Text layoutX="50.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Part">
+      <Text layoutX="39.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Part">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <RadioButton layoutX="176.0" layoutY="40.0" mnemonicParsing="false" text="In-House" />
-      <RadioButton layoutX="331.0" layoutY="40.0" mnemonicParsing="false" text="Outsourced" />
-      <Text layoutX="111.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <RadioButton layoutX="165.0" layoutY="38.0" mnemonicParsing="false" text="In-House" />
+      <RadioButton layoutX="320.0" layoutY="38.0" mnemonicParsing="false" text="Outsourced" />
+      <Text layoutX="116.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+      <TextField fx:id="IDTXT" disable="true" editable="false" layoutX="215.0" layoutY="85.0" promptText="Auto Gen - Disabled" />
+      <TextField fx:id="PartNameTXT" layoutX="215.0" layoutY="120.0" promptText="Part Name" />
+      <TextField fx:id="InvTXT" layoutX="215.0" layoutY="150.0" promptText="Inv" />
+      <TextField fx:id="PriceTXT" layoutX="215.0" layoutY="181.0" promptText="Price/Cost" />
+      <Text layoutX="106.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="114.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inv" />
+      <Text layoutX="96.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price/Cost" />
+      <Text layoutX="110.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
+      <Text layoutX="80.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" />
+      <Text layoutX="326.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
+      <TextField fx:id="MaxTXT" layoutX="214.0" layoutY="214.0" prefHeight="25.0" prefWidth="83.0" promptText="Max" />
+      <TextField fx:id="MinTXT" layoutX="362.0" layoutY="215.0" prefHeight="25.0" prefWidth="83.0" promptText="Min" />
+      <TextField fx:id="CompanyNameTXT" layoutX="214.0" layoutY="252.0" prefHeight="25.0" prefWidth="114.0" promptText="Comp Nm" />
+      <Button fx:id="SaveBTN" layoutX="289.0" layoutY="289.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Save" />
+      <Button fx:id="CancleBTN" layoutX="364.0" layoutY="289.0" mnemonicParsing="false" text="Cancel" />
    </children>
 </AnchorPane>
