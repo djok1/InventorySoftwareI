@@ -5,9 +5,22 @@
  */
 package inventorysoftwarei;
 
+import static java.awt.SystemColor.window;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -21,9 +34,39 @@ public class IMSPartsAddScreenController implements Initializable {
      * @param url
      * @param rb
      */
+    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // TODOStage 
+    }
+    public void  ConfirmClose(ActionEvent event) throws IOException, IOException
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Cancle add part?");
+        alert.setContentText("This Will Not Save");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Parent IMSMainScreenParent = FXMLLoader.load(getClass().getResource("InventoryMangementSystemMainScreen.fxml"));
+            Scene IMSMainScreenScene = new Scene (IMSMainScreenParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        
+            window.setScene(IMSMainScreenScene);
+            window.show();
+        } 
+        else 
+        {
+
+        }
     }    
-    
+    @FXML
+        private void handleCancleBTN(ActionEvent event)throws IOExpception, IOException
+    {
+        ConfirmClose(event);
+    } 
+
 }
+
