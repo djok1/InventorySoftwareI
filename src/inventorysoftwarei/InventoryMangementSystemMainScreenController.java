@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 
 /**
@@ -37,7 +40,12 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         Parent partAddScreenParent = FXMLLoader.load(getClass().getResource("IMSPartsAddScreen.fxml"));
         Scene partAddScreenScene = new Scene (partAddScreenParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    event.consume();
+                }
+            });
         window.setScene(partAddScreenScene);
         window.show();
     }
