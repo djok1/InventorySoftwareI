@@ -7,6 +7,7 @@ package inventorysoftwarei;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
@@ -40,12 +43,12 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         Parent partAddScreenParent = FXMLLoader.load(getClass().getResource("IMSPartsAddScreen.fxml"));
         Scene partAddScreenScene = new Scene (partAddScreenParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        /*window.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
                     event.consume();
                 }
-            });
+            });*/
         window.setScene(partAddScreenScene);
         window.show();
     }
@@ -89,6 +92,28 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
+        public void  ConfirmClose(ActionEvent event) throws IOException, IOException
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Cancle add part?");
+        alert.setContentText("This Will Not Save");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Parent IMSMainScreenParent = FXMLLoader.load(getClass().getResource("InventoryMangementSystemMainScreen.fxml"));
+            Scene IMSMainScreenScene = new Scene (IMSMainScreenParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        
+            window.setScene(IMSMainScreenScene);
+            window.show();
+        } 
+        else 
+        {
+
+        }
+    }
     
 }
