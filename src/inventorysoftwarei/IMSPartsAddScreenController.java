@@ -5,7 +5,9 @@
  */
 package inventorysoftwarei;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import static java.awt.SystemColor.window;
+import java.awt.event.WindowAdapter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -21,6 +23,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -39,6 +43,7 @@ public class IMSPartsAddScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODOStage 
+
     }
     public void  ConfirmClose(ActionEvent event) throws IOException, IOException
     {
@@ -67,6 +72,11 @@ public class IMSPartsAddScreenController implements Initializable {
     {
         ConfirmClose(event);
     } 
+    @FXML
+        private void handleAddBTN()
+        {
+           //ConfirmClose(CancleBTN.doclick());
+        }
 
 }
 

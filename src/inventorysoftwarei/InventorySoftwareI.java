@@ -5,11 +5,20 @@
  */
 package inventorysoftwarei;
 
+import java.io.IOException;
+import java.util.Optional;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -22,7 +31,22 @@ public class InventorySoftwareI extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("InventoryMangementSystemMainScreen.fxml"));
         
         Scene scene = new Scene(root);
-        
+        //stage.initStyle(StageStyle.UTILITY);
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    if(!ConfirmClose()){
+                     event.consume();
+                    }
+                    else
+                    {
+                    event.consume();
+                    stage.close();
+                    }
+                   ;
+                }
+            });
+
         stage.setScene(scene);
         stage.show();
     }
@@ -32,6 +56,16 @@ public class InventorySoftwareI extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+        public boolean  ConfirmClose()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Are you sure you wish to exit?");
+        alert.setContentText("Unsaved data will be lost.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get() == ButtonType.OK;
     }
     
 }

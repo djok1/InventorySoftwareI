@@ -93,27 +93,6 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }   
-        public void  ConfirmClose(ActionEvent event) throws IOException, IOException
-    {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Cancle add part?");
-        alert.setContentText("This Will Not Save");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK)
-        {
-            Parent IMSMainScreenParent = FXMLLoader.load(getClass().getResource("InventoryMangementSystemMainScreen.fxml"));
-            Scene IMSMainScreenScene = new Scene (IMSMainScreenParent);
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-            window.setScene(IMSMainScreenScene);
-            window.show();
-        } 
-        else 
-        {
-
-        }
-    }
     
 }
