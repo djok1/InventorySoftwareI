@@ -43,7 +43,7 @@ public class InventorySoftwareI extends Application {
                     event.consume();
                     stage.close();
                     }
-                   ;
+                   
                 }
             });
 

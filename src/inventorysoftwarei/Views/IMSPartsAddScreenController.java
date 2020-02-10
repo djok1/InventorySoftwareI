@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inventorysoftwarei;
+package inventorysoftwarei.Views;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import static java.awt.SystemColor.window;
