@@ -9,7 +9,7 @@ package inventorysoftwarei.Model;
  *
  * @author Djok
  */
-public class Parts
+public abstract class Part
 {
     private int partID;
     private int max;
@@ -17,12 +17,8 @@ public class Parts
     private int stock;
     private double partPrice;
     private String partName;
-    //constuctors
-    public Parts()
-    {
-        partName = new String();
-    }
-    public Parts(int PartID,int Max,int Min,int Stock, double PartPrice,String PartName)
+    //constuctor
+    public Part(int PartID,int Max,int Min,int Stock,double PartPrice,String PartName)
     {
         partID = PartID;
         max = Max;

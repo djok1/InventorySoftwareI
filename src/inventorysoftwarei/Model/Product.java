@@ -12,9 +12,9 @@ import javafx.collections.ObservableList;
  *
  * @author Djok
  */
-public class Products 
+public class Product 
 {
-    private ObservableList<Parts> parts;
+    private ObservableList<Part> parts;
     private int productID;
     private int min;
     private int max;
@@ -23,7 +23,7 @@ public class Products
     private double productPrice;
     
     //constuctors
-    public Products()
+    public Product()
     {
         parts = FXCollections.observableArrayList();
         productName = new String();
@@ -81,8 +81,31 @@ public class Products
         productName = newproductName;
     }
     
-    /*public static String formCompleat()
+    public static String formCompleat(ObservableList<Part> Parts, int Min, int Max, int Stock, String ProductName, double ProductPrice)
     {
-    
-    }*/
+        double priceOfParts = 0.00;
+        String errors = new String();
+        for(int i = 0; i < Parts.size(); i++)
+        {
+            priceOfParts += Parts.get(i).getPartPrice();
+        }
+        if(priceOfParts > ProductPrice)
+        {
+            errors += "Price of product must be more than price of parts. ";
+        }
+        if(Min < Max)
+        {
+            errors += "Min must be greater than max. ";
+        }
+        if(Stock < 0)
+        {
+            errors += "Stock must be positive. ";
+        }
+        if(ProductName == null)
+        {
+            errors += "Product must have a name. ";
+        }
+        
+        return errors;
+    }
 }
