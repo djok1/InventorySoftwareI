@@ -5,20 +5,17 @@
  */
 package inventorysoftwarei;
 
-import java.io.IOException;
 import java.util.Optional;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+
 
 /**
  *
@@ -28,7 +25,7 @@ public class InventorySoftwareI extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("InventoryMangementSystemMainScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/InventoryMangementSystemMainScreen.fxml"));
         
         Scene scene = new Scene(root);
         //stage.initStyle(StageStyle.UTILITY);
