@@ -5,6 +5,7 @@
  */
 package inventorysoftwarei.Views;
 
+import inventorysoftwarei.Views.IOExpception;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -40,7 +41,7 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handlePartAddBTN(ActionEvent event)throws IOExpception, IOException
     {
-        Parent partAddScreenParent = FXMLLoader.load(getClass().getResource("IMSPartsAddScreen.fxml"));
+        Parent partAddScreenParent = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/IMSPartsAddScreen.fxml"));
         Scene partAddScreenScene = new Scene (partAddScreenParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         /*window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -55,7 +56,7 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handlePartModifyBTN(ActionEvent event)throws IOExpception, IOException
     {
-        Parent partModifyScreenParent = FXMLLoader.load(getClass().getResource("IMSPartsModifyScreen.fxml"));
+        Parent partModifyScreenParent = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/IMSPartsModifyScreen.fxml"));
         Scene partModifyScreenScene = new Scene (partModifyScreenParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         
@@ -66,7 +67,7 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handleProductAddBTN(ActionEvent event)throws IOExpception, IOException
     {
-        Parent productAddScreenParent = FXMLLoader.load(getClass().getResource("IMSProductAddScreen.fxml"));
+        Parent productAddScreenParent = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/IMSProductAddScreen.fxml"));
         Scene productAddScreenScene = new Scene (productAddScreenParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         
@@ -76,7 +77,7 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handleProductModifyBTN(ActionEvent event)throws IOExpception, IOException
     {
-        Parent productModifyScreenParent = FXMLLoader.load(getClass().getResource("IMSProductModifyScreen.fxml"));
+        Parent productModifyScreenParent = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/IMSProductModifyScreen.fxml"));
         Scene productModifyScreenScene = new Scene (productModifyScreenParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         
