@@ -30,7 +30,7 @@ public class Product
     }
     
     //getters 
-    public int getproductID()
+    public int getProductID()
     {
         return productID;
     }
@@ -46,11 +46,11 @@ public class Product
     {
         return stock;
     }
-    public double getproductPrice()
+    public double getProductPrice()
     {
         return productPrice;
     }
-    public String getproductName()
+    public String getProductName()
     {
         return productName;
     }
@@ -107,5 +107,25 @@ public class Product
         }
         
         return errors;
+    }
+    public void addAssociatedPart(Part newPart)
+    {
+        parts.add(newPart);
+    }
+    
+    public ObservableList<Part> getAllAssociatedParts()
+    {
+        return parts;
+    }
+    //testing 
+    public void deletePart(Part selectedPart)
+    {
+        for(int i = 0; i < parts.size(); i++)
+        {
+            if(parts.get(i).getPartID()== selectedPart.getPartID())
+            {
+                parts.remove(i);
+            }
+        }        
     }
 }
