@@ -108,7 +108,7 @@ public class Product
         
         return errors;
     }
-    public void addAssociatedPart(Part newPart)
+    public void addPart(Part newPart)
     {
         parts.add(newPart);
     }

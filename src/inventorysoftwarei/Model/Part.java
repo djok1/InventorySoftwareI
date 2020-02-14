@@ -32,15 +32,15 @@ public abstract class Part
     {
         return partID;
     }
-    public int getmax()
+    public int getMax()
     {
         return max;
     }
-    public int getmin()
+    public int getMin()
     {
         return min;
     }
-    public int getstock()
+    public int getStock()
     {
         return stock;
     }
@@ -57,7 +57,7 @@ public abstract class Part
     {
         partID = newPartID;
     }
-    public void setmax(int newMax)
+    public void setMax(int newMax)
     {
         max = newMax;
     }

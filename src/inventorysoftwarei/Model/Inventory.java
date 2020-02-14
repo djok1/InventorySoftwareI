@@ -13,8 +13,12 @@ import javafx.collections.ObservableList;
  */
 public class Inventory 
 {
-    private ObservableList<Part> allParts;
-    private ObservableList<Product> allProducts;
+    private final ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private final ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    
+    public void Inventory()
+    {
+    }
     
     public void addProduct(Product newProduct)
     {
@@ -31,11 +35,11 @@ public class Inventory
         ObservableList<Part> PartSearch = FXCollections.observableArrayList();
         for(int i = 0; i < allParts.size(); i++)
         {
-            if(allParts.get(i).getPartName() == LookupTerm)
+            if(allParts.get(i).getPartName().equals(LookupTerm))
             {
                 PartSearch.add(allParts.get(i));
             }
-            if(Integer.toString(allParts.get(i).getPartID()) == LookupTerm)
+            if(Integer.toString(allParts.get(i).getPartID()).equals(LookupTerm))
             {
                 PartSearch.add(allParts.get(i));
             }
@@ -48,11 +52,11 @@ public class Inventory
         ObservableList<Product> ProductSearch = FXCollections.observableArrayList();
         for(int i = 0; i < allProducts.size(); i++)
         {
-            if(allProducts.get(i).getProductName() == LookupTerm)
+            if(allProducts.get(i).getProductName().equals(LookupTerm))
             {
                 ProductSearch.add(allProducts.get(i));
             }
-            if(Integer.toString(allProducts.get(i).getProductID()) == LookupTerm)
+            if(Integer.toString(allProducts.get(i).getProductID()).equals(LookupTerm))
             {
                 ProductSearch.add(allProducts.get(i));
             }

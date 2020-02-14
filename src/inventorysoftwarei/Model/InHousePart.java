@@ -12,7 +12,7 @@ package inventorysoftwarei.Model;
 public class InHousePart extends Part{
     private int machineID;
     
-    InHousePart(int PartID,int Max,int Min,int Stock,double PartPrice,String PartName,int MachineID)
+    public InHousePart(int PartID,int Max,int Min,int Stock,double PartPrice,String PartName,int MachineID)
     {
         super(PartID,Max,Min,Stock,PartPrice,PartName);
         machineID = MachineID;

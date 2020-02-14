@@ -5,24 +5,25 @@
  */
 package inventorysoftwarei.Views;
 
-import inventorysoftwarei.Views.IOExpception;
+import inventorysoftwarei.Model.InHousePart;
+import inventorysoftwarei.Model.Inventory;
+import inventorysoftwarei.Model.Part;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 
 
 /**
@@ -37,6 +38,20 @@ public class InventoryMangementSystemMainScreenController implements Initializab
      * @param url
      * @param rb
      */
+    Inventory inventory = new Inventory();    
+    
+    @FXML
+    TableView<Part> partsTbl;
+    @FXML
+    TableColumn partIDCol;
+    @FXML
+    TableColumn partNameCol;
+    @FXML
+    TableColumn partInventoryCol;
+    @FXML
+    TableColumn partPriceCol;
+    
+    
     
     @FXML
     private void handlePartAddBTN(ActionEvent event)throws IOExpception, IOException
@@ -91,9 +106,22 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         window.close();
     }
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }   
+    public void initialize(URL url, ResourceBundle rb) 
+    {
 
+        
+    }   
     
+    public void InventoryReceiver(Inventory PassedInventory)
+    {
+        inventory = PassedInventory;
+        
+        partIDCol.setCellValueFactory(new PropertyValueFactory<Part, Integer>("partID"));
+        partNameCol.setCellValueFactory(new PropertyValueFactory<Part, String>("partName"));
+        partInventoryCol.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
+        partPriceCol.setCellValueFactory(new PropertyValueFactory<Part, Double>("partPrice"));
+        ObservableList<Part> data = inventory.getAllParts();
+        
+        partsTbl.setItems(data);
+    }
 }
