@@ -32,7 +32,7 @@
               <buttons>
                   <Button fx:id="partsAdd" mnemonicParsing="false" onAction="#handlePartAddBTN" text="Add" />
                 <Button fx:id="partsModifty" mnemonicParsing="false" onAction="#handlePartModifyBTN" text="Modify" />
-                  <Button fx:id="partsDelete" mnemonicParsing="false" text="Delete" />
+                  <Button id="partsDeleteBTN" fx:id="partsDelete" mnemonicParsing="false" onAction="#HandlePartDeleteBTN" text="Delete" />
               </buttons>
             </ButtonBar>
             <Text layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts" wrappingWidth="168.15625">

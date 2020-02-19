@@ -56,15 +56,15 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handlePartAddBTN(ActionEvent event)throws IOExpception, IOException
     {
-        Parent partAddScreenParent = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/IMSPartsAddScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSPartsAddScreen.fxml"));
+        Parent partAddScreenParent = loader.load();
         Scene partAddScreenScene = new Scene (partAddScreenParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        /*window.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    event.consume();
-                }
-            });*/
+        
+        IMSPartsAddScreenController IMSPartsAddScreen = loader.getController();
+        IMSPartsAddScreen.InventoryReceiver(inventory);
+        
+        
         window.setScene(partAddScreenScene);
         window.show();
     }
@@ -82,8 +82,13 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handleProductAddBTN(ActionEvent event)throws IOExpception, IOException
     {
-        Parent productAddScreenParent = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/IMSProductAddScreen.fxml"));
+        FXMLLoader loader = new  FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSProductAddScreen.fxml"));
+        Parent productAddScreenParent = loader.load();
         Scene productAddScreenScene = new Scene (productAddScreenParent);
+        
+        IMSPartsAddScreenController IMSPartsAddScreen = loader.getController();
+        IMSPartsAddScreen.InventoryReceiver(inventory);
+        
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(productAddScreenScene);
@@ -123,5 +128,18 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         ObservableList<Part> data = inventory.getAllParts();
         
         partsTbl.setItems(data);
+    }
+    
+    @FXML
+    private void HandlePartDeleteBTN(ActionEvent event)
+    {
+        Part selectedPart = partsTbl.getSelectionModel().getSelectedItem();
+        inventory.deletePart(selectedPart);
+        
+    }
+    
+    private void RefreshList()
+    {
+        partsTbl.setItems(inventory.getAllParts());
     }
 }

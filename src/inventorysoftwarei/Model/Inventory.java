@@ -15,11 +15,16 @@ public class Inventory
 {
     private final ObservableList<Part> allParts = FXCollections.observableArrayList();
     private final ObservableList<Product> allProducts = FXCollections.observableArrayList();
-    
+    //needs to be changed to 0 in final 
+    private int currentPartID = 2;
     public void Inventory()
     {
     }
-    
+    public int nextPartID()
+    {
+        currentPartID++;
+        return currentPartID;
+    }
     public void addProduct(Product newProduct)
     {
         allProducts.add(newProduct);

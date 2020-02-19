@@ -94,7 +94,7 @@ public abstract class Part
        {
            errors+= "Price must be more than 0. ";
        }
-       if(name == null)
+       if("".equals(name) || name == null)
        {
            errors += "Must Name part. ";
        }        

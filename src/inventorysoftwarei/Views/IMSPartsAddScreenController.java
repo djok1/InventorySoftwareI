@@ -6,6 +6,8 @@
 package inventorysoftwarei.Views;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
+import inventorysoftwarei.Model.Inventory;
+import inventorysoftwarei.Model.Part;
 import static java.awt.SystemColor.window;
 import java.awt.event.WindowAdapter;
 import java.io.IOException;
@@ -22,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
@@ -38,7 +41,22 @@ public class IMSPartsAddScreenController implements Initializable {
      * @param url
      * @param rb
      */
-    
+    Inventory inventory = new Inventory();    
+    @FXML
+    private TextField PartNameTXT;
+    @FXML
+    private TextField IDTXT;      
+    @FXML
+    private TextField InvTXT;    
+    @FXML
+    private TextField PriceTXT;    
+    @FXML
+    private TextField MaxTXT;      
+    @FXML
+    private TextField MinTXT;      
+    @FXML
+    private TextField CompanyNameTXT;  
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,10 +91,21 @@ public class IMSPartsAddScreenController implements Initializable {
         ConfirmClose(event);
     } 
     @FXML
-        private void handleAddBTN()
+        private void handleSaveBTN()
+    {
+        
+        String errors = Part.formCompleat(Integer.parseInt(MaxTXT.getText()), Integer.parseInt(MinTXT.getText()), Integer.parseInt(InvTXT.getText()), Double.parseDouble(PriceTXT.getText()), PartNameTXT.getText());
+
+        if(errors == null)
         {
-           //ConfirmClose(CancleBTN.doclick());
+            
         }
+    }
+    
+    public void InventoryReceiver(Inventory PassedInventory)
+    {
+        inventory = PassedInventory;   
+    }
 
 }
 
