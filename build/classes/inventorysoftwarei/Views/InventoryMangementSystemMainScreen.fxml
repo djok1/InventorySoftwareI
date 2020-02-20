@@ -17,12 +17,12 @@
          <children>
             <Button fx:id="partsSearch" layoutX="278.0" layoutY="22.0" mnemonicParsing="false" text="Search" />
             <TextField layoutX="347.0" layoutY="22.0" />
-            <TableView layoutX="25.0" layoutY="62.0" prefHeight="200.0" prefWidth="505.0">
+            <TableView id="partsTbl" fx:id="partsTbl" layoutX="25.0" layoutY="62.0" prefHeight="200.0" prefWidth="505.0">
                <columns>
-                  <TableColumn prefWidth="125.0" text="Part ID" />
-                  <TableColumn prefWidth="125.0" text="Part Name" />
-                  <TableColumn prefWidth="125.0" text="Inventory Level" />
-                  <TableColumn prefWidth="130.0" text="Price/Cost per Unit" />
+                  <TableColumn id="partIDCol" fx:id="partIDCol" prefWidth="125.0" text="Part ID" />
+                  <TableColumn id="partNameCol" fx:id="partNameCol" prefWidth="125.0" text="Part Name" />
+                  <TableColumn id="partInventoryCol" fx:id="partInventoryCol" prefWidth="125.0" text="Inventory Level" />
+                  <TableColumn id="partPriceCol" fx:id="partPriceCol" prefWidth="130.0" text="Price/Cost per Unit" />
                </columns>
                <opaqueInsets>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -32,7 +32,7 @@
               <buttons>
                   <Button fx:id="partsAdd" mnemonicParsing="false" onAction="#handlePartAddBTN" text="Add" />
                 <Button fx:id="partsModifty" mnemonicParsing="false" onAction="#handlePartModifyBTN" text="Modify" />
-                  <Button fx:id="partsDelete" mnemonicParsing="false" text="Delete" />
+                  <Button id="partsDeleteBTN" fx:id="partsDelete" mnemonicParsing="false" onAction="#HandlePartDeleteBTN" text="Delete" />
               </buttons>
             </ButtonBar>
             <Text layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts" wrappingWidth="168.15625">

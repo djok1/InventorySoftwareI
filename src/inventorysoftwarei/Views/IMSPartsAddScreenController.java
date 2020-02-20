@@ -5,11 +5,8 @@
  */
 package inventorysoftwarei.Views;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import inventorysoftwarei.Model.Inventory;
 import inventorysoftwarei.Model.Part;
-import static java.awt.SystemColor.window;
-import java.awt.event.WindowAdapter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -25,9 +22,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -56,6 +52,9 @@ public class IMSPartsAddScreenController implements Initializable {
     private TextField MinTXT;      
     @FXML
     private TextField CompanyNameTXT;  
+    @FXML
+    private Text CompanyNameLBL;
+    
 
 
     @Override
@@ -86,25 +85,62 @@ public class IMSPartsAddScreenController implements Initializable {
         }
     }    
     @FXML
-        private void handleCancleBTN(ActionEvent event)throws IOExpception, IOException
+    private void handleCancleBTN(ActionEvent event)throws IOExpception, IOException
     {
         ConfirmClose(event);
     } 
     @FXML
-        private void handleSaveBTN()
+    private void handleSaveBTN()
     {
-        
-        String errors = Part.formCompleat(Integer.parseInt(MaxTXT.getText()), Integer.parseInt(MinTXT.getText()), Integer.parseInt(InvTXT.getText()), Double.parseDouble(PriceTXT.getText()), PartNameTXT.getText());
+        String errors;
 
-        if(errors == null)
+        try
         {
-            
+         errors = Part.formCompleat(Integer.parseInt(MaxTXT.getText()), Integer.parseInt(MinTXT.getText()), Integer.parseInt(InvTXT.getText()), Double.parseDouble(PriceTXT.getText()), PartNameTXT.getText());       
+           if(errors == null || "".equals(errors))
+           {
+              
+           }
+           else
+           {
+               Alert alert = new Alert(AlertType.WARNING);
+               alert.setTitle("Missing or Incorrect info");
+               alert.setHeaderText(null);
+               alert.setContentText(errors);
+
+               alert.showAndWait();
+           }
         }
+        catch(NumberFormatException e)
+        {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Only Numbers Please");
+            alert.setHeaderText(null);
+            alert.setContentText("Min, Max, and Inventory are only whole numbers. Price may be a decmial.");
+
+            alert.showAndWait();
+        }
+    }
+        
+    @FXML
+    private void InHouseRB()
+    {
+        CompanyNameLBL.setText("Machine ID");
+        CompanyNameTXT.setPromptText("Machine ID");
+    }
+    @FXML
+    private void OutsourcedRB()
+    {
+        CompanyNameLBL.setText("Company Name");
+        CompanyNameTXT.setPromptText("Company Name");
     }
     
     public void InventoryReceiver(Inventory PassedInventory)
     {
-        inventory = PassedInventory;   
+        inventory = PassedInventory;
+        int TempID = (inventory.GetPartCount() + 1);
+        
+        IDTXT.setText(String.valueOf(TempID));
     }
 
 }

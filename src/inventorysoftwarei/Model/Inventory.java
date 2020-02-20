@@ -91,6 +91,10 @@ public class Inventory
         }
     }
     
+    public int GetPartCount()
+    {
+        return currentPartID;
+    }
     public ObservableList<Part> getAllParts()
     {
         return allParts;
