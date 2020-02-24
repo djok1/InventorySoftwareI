@@ -5,7 +5,9 @@
  */
 package inventorysoftwarei.Views;
 
+import inventorysoftwarei.Model.InHousePart;
 import inventorysoftwarei.Model.Inventory;
+import inventorysoftwarei.Model.OutSourcedPart;
 import inventorysoftwarei.Model.Part;
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +22,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -54,6 +58,12 @@ public class IMSPartsAddScreenController implements Initializable {
     private TextField CompanyNameTXT;  
     @FXML
     private Text CompanyNameLBL;
+    @FXML
+    private RadioButton InHouse;
+    @FXML
+    private RadioButton OutSource;
+    @FXML
+    private Button SaveBTN;
     
 
 
@@ -62,7 +72,7 @@ public class IMSPartsAddScreenController implements Initializable {
         // TODOStage 
 
     }
-    public void  ConfirmClose(ActionEvent event) throws IOException, IOException
+    public void  ConfirmClose(ActionEvent event) throws IOException, IOException, IOExpception
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -72,12 +82,7 @@ public class IMSPartsAddScreenController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK)
         {
-            Parent IMSMainScreenParent = FXMLLoader.load(getClass().getResource("InventoryMangementSystemMainScreen.fxml"));
-            Scene IMSMainScreenScene = new Scene (IMSMainScreenParent);
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-            window.setScene(IMSMainScreenScene);
-            window.show();
+            MainScreenSwap(event);
         } 
         else 
         {
@@ -90,7 +95,7 @@ public class IMSPartsAddScreenController implements Initializable {
         ConfirmClose(event);
     } 
     @FXML
-    private void handleSaveBTN()
+    private void handleSaveBTN(ActionEvent event)throws IOExpception, IOException
     {
         String errors;
 
@@ -99,7 +104,33 @@ public class IMSPartsAddScreenController implements Initializable {
          errors = Part.formCompleat(Integer.parseInt(MaxTXT.getText()), Integer.parseInt(MinTXT.getText()), Integer.parseInt(InvTXT.getText()), Double.parseDouble(PriceTXT.getText()), PartNameTXT.getText());       
            if(errors == null || "".equals(errors))
            {
-              
+                if(InHouse.isSelected())
+                {
+                    try
+                    {
+                        int Check = Integer.parseInt(CompanyNameTXT.getText());
+                        InHousePart newPart = new InHousePart(inventory.nextPartID(), Integer.parseInt(MaxTXT.getText()), Integer.parseInt(MinTXT.getText()), Integer.parseInt(InvTXT.getText()), Double.parseDouble(PriceTXT.getText()), PartNameTXT.getText(), Integer.parseInt(CompanyNameTXT.getText()));
+                        inventory.addPart(newPart);
+                        MainScreenSwap(event);
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        Alert alert = new Alert(AlertType.WARNING);
+                        alert.setTitle("Only Numbers Please");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Machine ID must be int.");
+
+                        alert.showAndWait();
+                    }
+                }
+                else if(OutSource.isSelected())
+                {
+                   OutSourcedPart newPart = new OutSourcedPart(inventory.nextPartID(), Integer.parseInt(MaxTXT.getText()), Integer.parseInt(MinTXT.getText()), Integer.parseInt(InvTXT.getText()), Double.parseDouble(PriceTXT.getText()), PartNameTXT.getText(), CompanyNameTXT.getText());
+                   inventory.addPart(newPart);
+                   MainScreenSwap(event);
+                }
+                
+                
            }
            else
            {
@@ -127,12 +158,14 @@ public class IMSPartsAddScreenController implements Initializable {
     {
         CompanyNameLBL.setText("Machine ID");
         CompanyNameTXT.setPromptText("Machine ID");
+        SaveBTN.setDisable(false);
     }
     @FXML
     private void OutsourcedRB()
     {
         CompanyNameLBL.setText("Company Name");
         CompanyNameTXT.setPromptText("Company Name");
+        SaveBTN.setDisable(false);
     }
     
     public void InventoryReceiver(Inventory PassedInventory)
@@ -141,6 +174,21 @@ public class IMSPartsAddScreenController implements Initializable {
         int TempID = (inventory.GetPartCount() + 1);
         
         IDTXT.setText(String.valueOf(TempID));
+    }
+    
+    private void MainScreenSwap(ActionEvent event) throws IOExpception, IOException
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/InventoryMangementSystemMainScreen.fxml"));
+        Parent partAddScreenParent = loader.load();
+        Scene partAddScreenScene = new Scene (partAddScreenParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        
+        InventoryMangementSystemMainScreenController InventoryMangementSystemMainScreen = loader.getController();
+        InventoryMangementSystemMainScreen.InventoryReceiver(inventory);
+        
+        
+        window.setScene(partAddScreenScene);
+        window.show();
     }
 
 }

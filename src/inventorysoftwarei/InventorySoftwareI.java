@@ -50,10 +50,11 @@ public class InventorySoftwareI extends Application
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() 
         {
             @Override
-                public void handle(WindowEvent event) 
+            public void handle(WindowEvent event) 
+            {
+                if(!ConfirmClose())
                 {
-                    if(!ConfirmClose()){
-                     event.consume();
+                    event.consume();
                 }
                 else
                 {
@@ -78,7 +79,7 @@ public class InventorySoftwareI extends Application
     {
         launch(args);
     }
-    public boolean  ConfirmClose()
+    public static boolean  ConfirmClose()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");

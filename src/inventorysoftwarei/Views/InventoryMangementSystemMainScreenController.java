@@ -5,6 +5,7 @@
  */
 package inventorysoftwarei.Views;
 
+import inventorysoftwarei.InventorySoftwareI;
 import inventorysoftwarei.Model.InHousePart;
 import inventorysoftwarei.Model.Inventory;
 import inventorysoftwarei.Model.Part;
@@ -71,12 +72,21 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handlePartModifyBTN(ActionEvent event)throws IOExpception, IOException
     {
-        Parent partModifyScreenParent = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/IMSPartsModifyScreen.fxml"));
-        Scene partModifyScreenScene = new Scene (partModifyScreenParent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(partModifyScreenScene);
-        window.show();
+        Part selectedPart = partsTbl.getSelectionModel().getSelectedItem();
+        if(partsTbl.getSelectionModel().getSelectedItem() != null)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSPartsModifyScreen.fxml"));
+            Parent partModifyScreenParent = loader.load();
+            Scene partModifyScreenScene = new Scene (partModifyScreenParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            IMSPartsModifyScreenController IMSPartsModifyScreen = loader.getController();
+            IMSPartsModifyScreen.Receiver(inventory);
+
+
+            window.setScene(partModifyScreenScene);
+            window.show();
+        }
     }
     
     @FXML
@@ -107,8 +117,12 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handleExitBTN(ActionEvent event)
     {
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.close();
+        if(InventorySoftwareI.ConfirmClose())
+        {
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.close();
+        }
+        
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -142,4 +156,6 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     {
         partsTbl.setItems(inventory.getAllParts());
     }
+    
+    
 }
