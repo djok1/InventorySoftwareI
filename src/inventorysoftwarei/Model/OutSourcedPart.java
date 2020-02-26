@@ -17,7 +17,7 @@ public class OutSourcedPart extends Part
     {        
         super(PartID,Max,Min,Stock,PartPrice,PartName);
         companyName = CompanyName; 
-
+        super.setPartType(1);
     }
     //getter
     public String GetCompanyName()

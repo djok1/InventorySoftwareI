@@ -16,6 +16,7 @@ public class InHousePart extends Part{
     {
         super(PartID,Max,Min,Stock,PartPrice,PartName);
         machineID = MachineID;
+        super.setPartType(0);
     }
     //getter
     public int getMachineID()

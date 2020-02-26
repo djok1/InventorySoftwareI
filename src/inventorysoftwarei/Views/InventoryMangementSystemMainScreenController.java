@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -51,6 +52,8 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     TableColumn partInventoryCol;
     @FXML
     TableColumn partPriceCol;
+    @FXML
+    TextField partSearchTXT;
     
     
     
@@ -69,6 +72,8 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         window.setScene(partAddScreenScene);
         window.show();
     }
+
+    
     @FXML
     private void handlePartModifyBTN(ActionEvent event)throws IOExpception, IOException
     {
@@ -81,7 +86,7 @@ public class InventoryMangementSystemMainScreenController implements Initializab
             Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
             IMSPartsModifyScreenController IMSPartsModifyScreen = loader.getController();
-            IMSPartsModifyScreen.Receiver(inventory);
+            IMSPartsModifyScreen.Receiver(inventory, selectedPart);
 
 
             window.setScene(partModifyScreenScene);
@@ -141,9 +146,13 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         partPriceCol.setCellValueFactory(new PropertyValueFactory<Part, Double>("partPrice"));
         ObservableList<Part> data = inventory.getAllParts();
         
-        partsTbl.setItems(data);
+        partsTbl.setItems(data);        
     }
-    
+    @FXML
+    private void HandlePartSearchBTN()
+    {
+        RefreshPartsList(inventory.lookUpPart(partSearchTXT.getText()));
+    }
     @FXML
     private void HandlePartDeleteBTN(ActionEvent event)
     {
@@ -152,9 +161,9 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         
     }
     
-    private void RefreshList()
+    private void RefreshPartsList(ObservableList<Part> parts)
     {
-        partsTbl.setItems(inventory.getAllParts());
+        partsTbl.setItems(parts);
     }
     
     

@@ -38,6 +38,10 @@ public class Inventory
     public ObservableList lookUpPart(String LookupTerm)
     {
         ObservableList<Part> PartSearch = FXCollections.observableArrayList();
+        if("".equals(LookupTerm) || LookupTerm == null)
+        {
+            return allParts;
+        }
         for(int i = 0; i < allParts.size(); i++)
         {
             if(allParts.get(i).getPartName().equals(LookupTerm))
@@ -55,6 +59,10 @@ public class Inventory
     public ObservableList lookUpProduct(String LookupTerm)
     {
         ObservableList<Product> ProductSearch = FXCollections.observableArrayList();
+        if("".equals(LookupTerm) || LookupTerm == null)
+        {
+            return allParts;
+        }
         for(int i = 0; i < allProducts.size(); i++)
         {
             if(allProducts.get(i).getProductName().equals(LookupTerm))
@@ -90,7 +98,27 @@ public class Inventory
             }
         }
     }
-    
+    public String GetCompID(int ID)
+    {
+        String IDComp = new String();
+        for(int i = 0; i < allParts.size(); i++)
+        {
+            if(allParts.get(i).getPartID() == ID)
+            {
+                if(allParts.get(i).getPartType() == 0)
+                {
+                    InHousePart tempPart = (InHousePart) allParts.get(i);
+                    IDComp = String.valueOf(tempPart.getMachineID());
+                }
+                if(allParts.get(i).getPartType() == 1)
+                {
+                    OutSourcedPart tempPart = (OutSourcedPart) allParts.get(i);
+                    IDComp = tempPart.GetCompanyName();
+                }
+            }
+        }
+        return IDComp;
+    }
     public int GetPartCount()
     {
         return currentPartID;
@@ -103,10 +131,23 @@ public class Inventory
     {
         return allProducts;
     }
-    //unfinished methods
-    public void updatePart()
+    public void updatePart(Part part)
     {
-        //unsure of how to implement
+        deletePart(part);
+        addPart(part);
+    }
+    
+    public int IndexID(int ID)
+    {
+        int index = -1;
+        for(int i = 0; i < allParts.size(); i++)
+        {
+            if(allParts.get(i).getPartID() == ID)
+            {
+                index = i;
+            }
+        }
+        return index;
     }
     
 }

@@ -17,6 +17,7 @@ public abstract class Part
     private int stock;
     private double partPrice;
     private String partName;
+    private int partType;
     //constuctor
     public Part(int PartID,int Max,int Min,int Stock,double PartPrice,String PartName)
     {
@@ -52,6 +53,10 @@ public abstract class Part
     {
         return partName;
     }
+    public int getPartType()
+    {
+        return partType;
+    }
     //setters
     public void setPartID(int newPartID)
     {
@@ -76,6 +81,10 @@ public abstract class Part
     public void setPartName(String newPartName)
     {
         partName = newPartName;
+    }
+    public void setPartType(int type)
+    {
+        partType = type;
     }
     
     public static String formCompleat(int max, int min, int stock, double price, String name)
