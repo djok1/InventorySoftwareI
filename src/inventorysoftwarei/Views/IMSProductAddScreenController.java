@@ -93,6 +93,10 @@ public class IMSProductAddScreenController implements Initializable {
         ObservableList<Part> data = inventory.getAllParts();
         
         AllPartsTBL.setItems(data);
+        ProductPartIDCol.setCellValueFactory(new PropertyValueFactory<Part, Integer>("partID"));
+        ProductPartNameCol.setCellValueFactory(new PropertyValueFactory<Part, String>("partName"));
+        ProductPartInventoryCol.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
+        ProductPartPriceCol.setCellValueFactory(new PropertyValueFactory<Part, Double>("partPrice"));
     }
     private void MainScreenSwap(ActionEvent event) throws IOExpception, IOException
     {
@@ -138,15 +142,36 @@ public class IMSProductAddScreenController implements Initializable {
     @FXML
     private void handleAddBTN(ActionEvent event)
     {
-        
+        Part selectedPart = AllPartsTBL.getSelectionModel().getSelectedItem();
+        boolean containsPart = false;
+        if(AllPartsTBL.getSelectionModel().getSelectedItem() != null)
+        {
+            for(int i = 0; i < CurrentParts.size(); i++)
+            {
+                if(CurrentParts.get(i).getPartID() == selectedPart.getPartID())
+                {
+                   containsPart = true; 
+                }
+            }
+            if(!containsPart)
+            {
+                CurrentParts.add(selectedPart);
+                RefreshProductPartsList(CurrentParts);
+            }
+
+        }
     }
     @FXML
     private void HandlePartSearchBTN()
     {
-        RefreshPartsList(inventory.lookUpPart(SearchTXT.getText()));
+        RefreshAllPartsList(inventory.lookUpPart(SearchTXT.getText()));
     }
-    private void RefreshPartsList(ObservableList<Part> parts)
+    private void RefreshAllPartsList(ObservableList<Part> parts)
     {
         AllPartsTBL.setItems(parts);
+    }
+    private void RefreshProductPartsList(ObservableList<Part> parts)
+    {
+        ProductPartsTBL.setItems(parts);
     }
 }
