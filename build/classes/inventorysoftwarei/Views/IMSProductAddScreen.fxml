@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventorysoftwarei.Views.IMSPartsAddScreenController">
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventorysoftwarei.Views.IMSProductAddScreenController">
    <children>
       <Text layoutX="121.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Product">
          <font>
@@ -18,43 +18,43 @@
       </Text>
       <Text layoutX="116.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
       <TextField fx:id="IDTXT" disable="true" editable="false" layoutX="215.0" layoutY="85.0" promptText="Auto Gen - Disabled" />
-      <TextField fx:id="PartNameTXT" layoutX="215.0" layoutY="120.0" promptText="Product Name" />
+      <TextField fx:id="ProductNameTXT" layoutX="215.0" layoutY="120.0" promptText="Product Name" />
       <TextField fx:id="InvTXT" layoutX="215.0" layoutY="150.0" promptText="Inv" />
       <TextField fx:id="PriceTXT" layoutX="215.0" layoutY="181.0" promptText="Price/Cost" />
-      <Text layoutX="106.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="105.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
       <Text layoutX="114.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inv" />
       <Text layoutX="96.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price/Cost" />
       <Text layoutX="110.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
       <Text layoutX="326.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
       <TextField fx:id="MaxTXT" layoutX="214.0" layoutY="214.0" prefHeight="25.0" prefWidth="83.0" promptText="Max" />
       <TextField fx:id="MinTXT" layoutX="362.0" layoutY="215.0" prefHeight="25.0" prefWidth="83.0" promptText="Min" />
-      <Button fx:id="SaveBTN" layoutX="941.0" layoutY="423.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Save" />
-      <Button fx:id="CancleBTN" layoutX="1016.0" layoutY="423.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="657.0" layoutY="33.0" mnemonicParsing="false" text="Button" />
-      <TextField layoutX="725.0" layoutY="33.0" prefHeight="25.0" prefWidth="181.0" />
-      <TableView layoutX="563.0" layoutY="75.0" prefHeight="134.0" prefWidth="505.0">
+      <Button fx:id="SaveBTN" layoutX="941.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleSaveBTN" prefHeight="25.0" prefWidth="52.0" text="Save" />
+      <Button fx:id="CancleBTN" layoutX="1016.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleCancleBTN" text="Cancel" />
+      <Button fx:id="SearchBTN" layoutX="657.0" layoutY="33.0" mnemonicParsing="false" onAction="#HandlePartSearchBTN" text="Search" />
+      <TextField fx:id="SearchTXT" layoutX="725.0" layoutY="33.0" onAction="#HandlePartSearchBTN" prefHeight="25.0" prefWidth="181.0" />
+      <TableView fx:id="AllPartsTBL" layoutX="563.0" layoutY="75.0" prefHeight="134.0" prefWidth="505.0">
          <columns>
-            <TableColumn prefWidth="125.0" text="Part ID" />
-            <TableColumn prefWidth="125.0" text="Part Name" />
-            <TableColumn prefWidth="125.0" text="Inventory Level" />
-            <TableColumn prefWidth="130.0" text="Price/Cost per Unit" />
+            <TableColumn fx:id="AllPartsIDCol" prefWidth="125.0" text="Part ID" />
+            <TableColumn fx:id="AllPartsNameCol" prefWidth="125.0" text="Part Name" />
+            <TableColumn fx:id="AllPartsInventoryCol" prefWidth="125.0" text="Inventory Level" />
+            <TableColumn fx:id="AllPartsPriceCol" prefWidth="130.0" text="Price/Cost per Unit" />
          </columns>
          <opaqueInsets>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </opaqueInsets>
       </TableView>
-      <TableView layoutX="563.0" layoutY="247.0" prefHeight="134.0" prefWidth="505.0">
+      <TableView fx:id="ProductPartsTBL" layoutX="563.0" layoutY="247.0" prefHeight="134.0" prefWidth="505.0">
          <columns>
-            <TableColumn prefWidth="125.0" text="Part ID" />
-            <TableColumn prefWidth="125.0" text="Part Name" />
-            <TableColumn prefWidth="125.0" text="Inventory Level" />
-            <TableColumn prefWidth="130.0" text="Price/Cost per Unit" />
+            <TableColumn fx:id="ProductPartIDCol" prefWidth="125.0" text="Part ID" />
+            <TableColumn fx:id="ProductPartNameCol" prefWidth="125.0" text="Part Name" />
+            <TableColumn fx:id="ProductPartInventoryCol" prefWidth="125.0" text="Inventory Level" />
+            <TableColumn fx:id="ProductPartPriceCol" prefWidth="130.0" text="Price/Cost per Unit" />
          </columns>
          <opaqueInsets>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </opaqueInsets>
       </TableView>
-      <Button layoutX="1016.0" layoutY="214.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Add" />
-      <Button layoutX="1016.0" layoutY="388.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Delete" />
+      <Button fx:id="AddBTN" layoutX="1016.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAddBTN" prefHeight="25.0" prefWidth="52.0" text="Add" />
+      <Button fx:id="DeleteBTN" layoutX="1016.0" layoutY="388.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Delete" />
    </children>
 </AnchorPane>

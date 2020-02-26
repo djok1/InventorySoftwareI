@@ -17,6 +17,7 @@ public class Inventory
     private final ObservableList<Product> allProducts = FXCollections.observableArrayList();
     //needs to be changed to 0 in final 
     private int currentPartID = 2;
+    private int currentProductID = 0;
     public void Inventory()
     {
     }
@@ -24,6 +25,11 @@ public class Inventory
     {
         currentPartID++;
         return currentPartID;
+    }
+    public int nextProductID()
+    {
+        currentProductID++;
+        return currentProductID;
     }
     public void addProduct(Product newProduct)
     {
@@ -122,6 +128,10 @@ public class Inventory
     public int GetPartCount()
     {
         return currentPartID;
+    }
+    public int GetProductCount()
+    {
+        return currentProductID;
     }
     public ObservableList<Part> getAllParts()
     {

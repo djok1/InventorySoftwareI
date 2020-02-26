@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventorysoftwarei.Views.IMSPartsAddScreenController">
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventorysoftwarei.Views.IMSProductModifyScreenController">
    <children>
       <Text layoutX="121.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Product">
          <font>
@@ -21,7 +21,7 @@
       <TextField fx:id="PartNameTXT" layoutX="215.0" layoutY="120.0" promptText="Product Name" />
       <TextField fx:id="InvTXT" layoutX="215.0" layoutY="150.0" promptText="Inv" />
       <TextField fx:id="PriceTXT" layoutX="215.0" layoutY="181.0" promptText="Price/Cost" />
-      <Text layoutX="106.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="107.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
       <Text layoutX="114.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inv" />
       <Text layoutX="96.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price/Cost" />
       <Text layoutX="110.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
@@ -30,7 +30,7 @@
       <TextField fx:id="MinTXT" layoutX="362.0" layoutY="215.0" prefHeight="25.0" prefWidth="83.0" promptText="Min" />
       <Button fx:id="SaveBTN" layoutX="941.0" layoutY="423.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Save" />
       <Button fx:id="CancleBTN" layoutX="1016.0" layoutY="423.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="657.0" layoutY="33.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="657.0" layoutY="33.0" mnemonicParsing="false" text="Search" />
       <TextField layoutX="725.0" layoutY="33.0" prefHeight="25.0" prefWidth="181.0" />
       <TableView layoutX="563.0" layoutY="75.0" prefHeight="134.0" prefWidth="505.0">
          <columns>

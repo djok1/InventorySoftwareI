@@ -6,13 +6,11 @@
 package inventorysoftwarei.Views;
 
 import inventorysoftwarei.InventorySoftwareI;
-import inventorysoftwarei.Model.InHousePart;
 import inventorysoftwarei.Model.Inventory;
 import inventorysoftwarei.Model.Part;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,7 +78,7 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         Part selectedPart = partsTbl.getSelectionModel().getSelectedItem();
         if(partsTbl.getSelectionModel().getSelectedItem() != null)
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSPartsModifyScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSPartsAddScreen.fxml"));
             Parent partModifyScreenParent = loader.load();
             Scene partModifyScreenScene = new Scene (partModifyScreenParent);
             Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -97,14 +95,14 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handleProductAddBTN(ActionEvent event)throws IOExpception, IOException
     {
-        FXMLLoader loader = new  FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSProductAddScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSProductAddScreen.fxml"));
         Parent productAddScreenParent = loader.load();
         Scene productAddScreenScene = new Scene (productAddScreenParent);
-        
-        IMSPartsAddScreenController IMSPartsAddScreen = loader.getController();
-        IMSPartsAddScreen.InventoryReceiver(inventory);
-        
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        
+        IMSProductAddScreenController IMSProductAddScreen = loader.getController();
+        IMSProductAddScreen.InventoryReceiver(inventory);
+        
         
         window.setScene(productAddScreenScene);
         window.show();
