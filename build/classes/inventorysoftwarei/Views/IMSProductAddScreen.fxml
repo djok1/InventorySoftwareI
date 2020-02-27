@@ -55,6 +55,6 @@
          </opaqueInsets>
       </TableView>
       <Button fx:id="AddBTN" layoutX="1016.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAddBTN" prefHeight="25.0" prefWidth="52.0" text="Add" />
-      <Button fx:id="DeleteBTN" layoutX="1016.0" layoutY="388.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Delete" />
+      <Button fx:id="DeleteBTN" layoutX="1016.0" layoutY="388.0" mnemonicParsing="false" onAction="#HandleDeleteBTN" prefHeight="25.0" prefWidth="52.0" text="Delete" />
    </children>
 </AnchorPane>

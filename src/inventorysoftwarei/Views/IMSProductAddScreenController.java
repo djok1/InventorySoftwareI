@@ -5,8 +5,11 @@
  */
 package inventorysoftwarei.Views;
 
+import inventorysoftwarei.Model.InHousePart;
 import inventorysoftwarei.Model.Inventory;
+import inventorysoftwarei.Model.OutSourcedPart;
 import inventorysoftwarei.Model.Part;
+import inventorysoftwarei.Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -135,9 +138,38 @@ public class IMSProductAddScreenController implements Initializable {
         }
     } 
     @FXML
-    private void handleSaveBTN(ActionEvent event)
+    private void handleSaveBTN(ActionEvent event)throws IOExpception, IOException
     {
-        
+        String errors;
+
+        try
+        {
+         errors = Product.formCompleat(CurrentParts, Integer.parseInt(MinTXT.getText()), Integer.parseInt(MaxTXT.getText()), Integer.parseInt(InvTXT.getText()), ProductNameTXT.getText(), Double.parseDouble(PriceTXT.getText()));       
+           if(errors == null || "".equals(errors))
+           {
+               Product newProduct = new Product(CurrentParts, Integer.parseInt(MinTXT.getText()), Integer.parseInt(MaxTXT.getText()), Integer.parseInt(InvTXT.getText()), ProductNameTXT.getText(), Double.parseDouble(PriceTXT.getText()));
+               newProduct.setproductID(inventory.nextProductID());
+               MainScreenSwap(event);
+           }
+           else
+           {
+               Alert alert = new Alert(Alert.AlertType.WARNING);
+               alert.setTitle("Missing or Incorrect info");
+               alert.setHeaderText(null);
+               alert.setContentText(errors);
+
+               alert.showAndWait();
+           }
+        }
+        catch(NumberFormatException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Only Numbers Please");
+            alert.setHeaderText(null);
+            alert.setContentText("Min, Max, and Inventory are only whole numbers. Price may be a decmial.");
+
+            alert.showAndWait();
+        }
     }
     @FXML
     private void handleAddBTN(ActionEvent event)
@@ -158,6 +190,23 @@ public class IMSProductAddScreenController implements Initializable {
                 CurrentParts.add(selectedPart);
                 RefreshProductPartsList(CurrentParts);
             }
+
+        }
+    }
+    @FXML
+    private void HandleDeleteBTN()
+    {
+        Part selectedPart = AllPartsTBL.getSelectionModel().getSelectedItem();
+        if(AllPartsTBL.getSelectionModel().getSelectedItem() != null)
+        {
+            for(int i = 0; i < CurrentParts.size(); i++)
+            {
+                if(CurrentParts.get(i).getPartID() == selectedPart.getPartID())
+                {
+                    CurrentParts.remove(i);
+                }
+            }
+            RefreshProductPartsList(CurrentParts);
 
         }
     }

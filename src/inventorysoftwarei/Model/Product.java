@@ -28,7 +28,15 @@ public class Product
         parts = FXCollections.observableArrayList();
         productName = new String();
     }
-    
+    public Product(ObservableList<Part> Parts, int Min, int Max, int Stock, String ProductName, double ProductPrice)
+    {
+        parts = Parts;
+        min = Min;
+        max = Max;
+        stock = Stock;
+        productName = ProductName;
+        productPrice = ProductPrice;
+    }
     //getters 
     public int getProductID()
     {
@@ -127,5 +135,9 @@ public class Product
                 parts.remove(i);
             }
         }        
+    }
+    public void replacePartList(ObservableList<Part> partList)
+    {
+        parts = partList;
     }
 }
