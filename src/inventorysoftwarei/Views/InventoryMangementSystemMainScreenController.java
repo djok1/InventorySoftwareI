@@ -11,6 +11,7 @@ import inventorysoftwarei.Model.Part;
 import inventorysoftwarei.Model.Product;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -185,16 +188,20 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void HandlePartDeleteBTN(ActionEvent event)
     {
-        Part selectedPart = partsTbl.getSelectionModel().getSelectedItem();
-        inventory.deletePart(selectedPart);
-        
+        if(ConfirmDelete())
+        {
+            Part selectedPart = partsTbl.getSelectionModel().getSelectedItem();
+            inventory.deletePart(selectedPart);
+        }
     }
     @FXML
     private void HandleProductDeleteBTN(ActionEvent event)
     {
-        Product selectedProduct = productsTbl.getSelectionModel().getSelectedItem();
-        inventory.deleteProduct(selectedProduct);
-        
+        if(ConfirmDelete())
+        {
+            Product selectedProduct = productsTbl.getSelectionModel().getSelectedItem();
+            inventory.deleteProduct(selectedProduct);
+        }
     }
     private void RefreshPartsList(ObservableList<Part> parts)
     {
@@ -210,4 +217,16 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     {
         productsTbl.setItems(Products);
     }
+    
+    public Boolean ConfirmDelete()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Do you wish to delete this?");
+        alert.setContentText("This can not be reversed");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get() == ButtonType.OK;
+        
+    } 
 }
