@@ -149,6 +149,7 @@ public class IMSProductAddScreenController implements Initializable {
            {
                Product newProduct = new Product(CurrentParts, Integer.parseInt(MinTXT.getText()), Integer.parseInt(MaxTXT.getText()), Integer.parseInt(InvTXT.getText()), ProductNameTXT.getText(), Double.parseDouble(PriceTXT.getText()));
                newProduct.setproductID(inventory.nextProductID());
+               inventory.addProduct(newProduct);
                MainScreenSwap(event);
            }
            else
@@ -196,8 +197,8 @@ public class IMSProductAddScreenController implements Initializable {
     @FXML
     private void HandleDeleteBTN()
     {
-        Part selectedPart = AllPartsTBL.getSelectionModel().getSelectedItem();
-        if(AllPartsTBL.getSelectionModel().getSelectedItem() != null)
+        Part selectedPart = ProductPartsTBL.getSelectionModel().getSelectedItem();
+        if(selectedPart != null)
         {
             for(int i = 0; i < CurrentParts.size(); i++)
             {

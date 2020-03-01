@@ -8,6 +8,7 @@ package inventorysoftwarei.Views;
 import inventorysoftwarei.InventorySoftwareI;
 import inventorysoftwarei.Model.Inventory;
 import inventorysoftwarei.Model.Part;
+import inventorysoftwarei.Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,6 +55,19 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     TextField partSearchTXT;
     
     
+    @FXML
+    TableView<Product> productsTbl;
+    @FXML
+    TableColumn productIDCol;
+    @FXML
+    TableColumn productNameCol;
+    @FXML
+    TableColumn productInventoryCol;
+    @FXML
+    TableColumn productPriceCol;
+    @FXML
+    TextField productSearchTXT;
+    
     
     @FXML
     private void handlePartAddBTN(ActionEvent event)throws IOExpception, IOException
@@ -78,7 +92,7 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         Part selectedPart = partsTbl.getSelectionModel().getSelectedItem();
         if(partsTbl.getSelectionModel().getSelectedItem() != null)
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSPartsAddScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSPartsModifyScreen.fxml"));
             Parent partModifyScreenParent = loader.load();
             Scene partModifyScreenScene = new Scene (partModifyScreenParent);
             Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -110,12 +124,21 @@ public class InventoryMangementSystemMainScreenController implements Initializab
     @FXML
     private void handleProductModifyBTN(ActionEvent event)throws IOExpception, IOException
     {
-        Parent productModifyScreenParent = FXMLLoader.load(getClass().getResource("/inventorysoftwarei/Views/IMSProductModifyScreen.fxml"));
-        Scene productModifyScreenScene = new Scene (productModifyScreenParent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(productModifyScreenScene);
-        window.show();
+        Product selectedProduct = productsTbl.getSelectionModel().getSelectedItem();
+        if(productsTbl.getSelectionModel().getSelectedItem() != null)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/IMSProductModifyScreen.fxml"));
+            Parent ProductModifyScreenParent = loader.load();
+            Scene ProductModifyScreenScene = new Scene (ProductModifyScreenParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            IMSProductModifyScreenController IMSProductsModifyScreen = loader.getController();
+            IMSProductsModifyScreen.Receiver(inventory, selectedProduct);
+
+
+            window.setScene(ProductModifyScreenScene);
+            window.show();
+        }
     }
     @FXML
     private void handleExitBTN(ActionEvent event)
@@ -144,7 +167,15 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         partPriceCol.setCellValueFactory(new PropertyValueFactory<Part, Double>("partPrice"));
         ObservableList<Part> data = inventory.getAllParts();
         
-        partsTbl.setItems(data);        
+        partsTbl.setItems(data);     
+        
+        productIDCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("productID"));
+        productNameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("productName"));
+        productInventoryCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("stock"));
+        productPriceCol.setCellValueFactory(new PropertyValueFactory<Product, Double>("productPrice"));
+        ObservableList<Product> productData = inventory.getAllProducts();
+        
+        productsTbl.setItems(productData);  
     }
     @FXML
     private void HandlePartSearchBTN()
@@ -158,11 +189,25 @@ public class InventoryMangementSystemMainScreenController implements Initializab
         inventory.deletePart(selectedPart);
         
     }
-    
+    @FXML
+    private void HandleProductDeleteBTN(ActionEvent event)
+    {
+        Product selectedProduct = productsTbl.getSelectionModel().getSelectedItem();
+        inventory.deleteProduct(selectedProduct);
+        
+    }
     private void RefreshPartsList(ObservableList<Part> parts)
     {
         partsTbl.setItems(parts);
     }
     
-    
+    @FXML
+    private void HandleProductSearchBTN()
+    {
+        RefreshProductsList(inventory.lookUpProduct(productSearchTXT.getText()));
+    }
+    private void RefreshProductsList(ObservableList<Product> Products)
+    {
+        productsTbl.setItems(Products);
+    }
 }

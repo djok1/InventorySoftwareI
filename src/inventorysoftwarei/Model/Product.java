@@ -42,15 +42,15 @@ public class Product
     {
         return productID;
     }
-    public int getmax()
+    public int getMax()
     {
         return max;
     }
-    public int getmin()
+    public int getMin()
     {
         return min;
     }
-    public int getstock()
+    public int getStock()
     {
         return stock;
     }
@@ -101,9 +101,9 @@ public class Product
         {
             errors += "Price of product must be more than price of parts. ";
         }
-        if(Min < Max)
+        if(Max < Min)
         {
-            errors += "Min must be greater than max. ";
+            errors += "Max must be greater than min. ";
         }
         if(Stock < 0)
         {
@@ -112,6 +112,10 @@ public class Product
         if(ProductName == null)
         {
             errors += "Product must have a name. ";
+        }
+        if(Parts.size() < 1)
+        {
+            errors += "Products must contain at least one part.";
         }
         
         return errors;

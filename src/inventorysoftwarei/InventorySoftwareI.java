@@ -8,6 +8,8 @@ package inventorysoftwarei;
 import inventorysoftwarei.Model.InHousePart;
 import inventorysoftwarei.Model.Inventory;
 import inventorysoftwarei.Model.OutSourcedPart;
+import inventorysoftwarei.Model.Part;
+import inventorysoftwarei.Model.Product;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -19,6 +21,8 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import inventorysoftwarei.Views.InventoryMangementSystemMainScreenController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -41,6 +45,15 @@ public class InventorySoftwareI extends Application
         TestPart2 = new OutSourcedPart(2,20,2,10,20.00,"Test2","Flex");
         inventory.addPart(TestPart1);
         inventory.addPart(TestPart2);
+        ObservableList<Part> Parts = FXCollections.observableArrayList();
+        Parts.add(TestPart1);
+        Parts.add(TestPart2);
+        Product TestProduct1 = new Product(Parts,1,2,1,"test",20);
+        TestProduct1.setproductID(1);
+        inventory.addProduct(TestProduct1);
+        Product TestProduct2 = new Product(Parts,1,2,1,"test2",20);
+        TestProduct2.setproductID(2);
+        inventory.addProduct(TestProduct2);
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/inventorysoftwarei/Views/InventoryMangementSystemMainScreen.fxml"));
         Parent root = loader.load();

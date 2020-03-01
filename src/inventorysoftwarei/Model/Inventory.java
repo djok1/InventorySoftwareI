@@ -17,7 +17,7 @@ public class Inventory
     private final ObservableList<Product> allProducts = FXCollections.observableArrayList();
     //needs to be changed to 0 in final 
     private int currentPartID = 2;
-    private int currentProductID = 0;
+    private int currentProductID = 2;
     public void Inventory()
     {
     }
@@ -67,7 +67,7 @@ public class Inventory
         ObservableList<Product> ProductSearch = FXCollections.observableArrayList();
         if("".equals(LookupTerm) || LookupTerm == null)
         {
-            return allParts;
+            return allProducts;
         }
         for(int i = 0; i < allProducts.size(); i++)
         {
@@ -158,6 +158,11 @@ public class Inventory
             }
         }
         return index;
+    }
+    public void updateProduct(Product product)
+    {
+        deleteProduct(product);
+        addProduct(product);
     }
     
 }

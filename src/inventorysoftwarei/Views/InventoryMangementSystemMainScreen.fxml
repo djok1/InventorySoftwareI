@@ -47,21 +47,21 @@
       </AnchorPane>
       <AnchorPane layoutX="573.0" layoutY="81.0" prefHeight="323.0" prefWidth="543.0" style="-fx-border-radius: 10,10,10,10; -fx-border-color: black;">
          <children>
-            <Button layoutX="278.0" layoutY="22.0" mnemonicParsing="false" text="Search" />
-            <TextField layoutX="347.0" layoutY="22.0" />
-            <TableView layoutX="25.0" layoutY="62.0" prefHeight="200.0" prefWidth="505.0">  
+            <Button layoutX="278.0" layoutY="22.0" mnemonicParsing="false" onAction="#HandleProductSearchBTN" text="Search" />
+            <TextField fx:id="productSearchTXT" layoutX="347.0" layoutY="22.0" onAction="#HandleProductSearchBTN" />
+            <TableView fx:id="productsTbl" layoutX="25.0" layoutY="62.0" prefHeight="200.0" prefWidth="505.0">  
                <columns>
-                  <TableColumn prefWidth="125.0" text="Product ID" />
-                  <TableColumn prefWidth="125.0" text="Product Name" />
-                  <TableColumn prefWidth="125.0" text="Inventory Level" />
-                  <TableColumn prefWidth="130.0" text="Price/Cost per Unit" />
+                  <TableColumn fx:id="productIDCol" prefWidth="125.0" text="Product ID" />
+                  <TableColumn fx:id="productNameCol" prefWidth="125.0" text="Product Name" />
+                  <TableColumn fx:id="productInventoryCol" prefWidth="125.0" text="Inventory Level" />
+                  <TableColumn fx:id="productPriceCol" prefWidth="130.0" text="Price/Cost per Unit" />
                </columns>
             </TableView>
             <ButtonBar layoutX="231.0" layoutY="271.0" prefHeight="40.0" prefWidth="200.0">
                <buttons>
                   <Button mnemonicParsing="false" onAction="#handleProductAddBTN" text="Add" />
                   <Button mnemonicParsing="false" onAction="#handleProductModifyBTN" text="Modify" />
-                  <Button mnemonicParsing="false" text="Delete" />
+                  <Button mnemonicParsing="false" onAction="#HandleProductDeleteBTN" text="Delete" />
                </buttons>
             </ButtonBar>
             <Text layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Products" wrappingWidth="168.15625">
